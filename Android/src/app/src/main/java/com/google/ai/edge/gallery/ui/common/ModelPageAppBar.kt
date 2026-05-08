@@ -270,8 +270,7 @@ fun ModelPageAppBar(
         }
       },
       // AICore doesn't support system prompt yet.
-      showSystemPromptEditorTab =
-        allowEditingSystemPrompt && model.runtimeType != RuntimeType.AICORE,
+      showSystemPromptEditorTab = allowEditingSystemPrompt,
       defaultSystemPrompt = task.defaultSystemPrompt,
       curSystemPrompt = curSystemPrompt,
     )
