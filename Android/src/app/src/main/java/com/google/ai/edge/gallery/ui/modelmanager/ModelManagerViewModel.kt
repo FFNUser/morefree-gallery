@@ -28,7 +28,7 @@ import com.google.ai.edge.gallery.R
 import com.google.ai.edge.gallery.common.ProjectConfig
 import com.google.ai.edge.gallery.common.SystemPromptHelper
 import com.google.ai.edge.gallery.common.getJsonResponse
-import com.google.ai.edge.gallery.common.isAICoreSupported
+import com.google.ai.edge.gallery.common.isAICoreServiceInstalled
 import com.google.ai.edge.gallery.customtasks.common.CustomTask
 import com.google.ai.edge.gallery.data.Accelerator
 import com.google.ai.edge.gallery.data.BuiltInTaskId
@@ -943,17 +943,7 @@ constructor(
         Log.d(TAG, "Allowlist: $modelAllowlist")
 
         val isAICoreAvailable by lazy {
-          // Build a fast-lookup set of all supported device models.
-          // This extracts the models from all allowed groups, flattens them into a single stream,
-          // lowercases them for case-insensitive matching, and stores them in a Set.
-          val allowedDeviceModelsSet =
-            modelAllowlist.aicoreRequirements
-              ?.allowedDeviceGroups
-              ?.asSequence()
-              ?.flatMap { it.deviceModels }
-              ?.map { it.lowercase() }
-              ?.toSet()
-          isAICoreSupported(allowedDeviceModelsSet)
+          isAICoreServiceInstalled(context)
         }
 
         // Convert models in the allowlist.

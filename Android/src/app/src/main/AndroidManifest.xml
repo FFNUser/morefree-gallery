@@ -50,7 +50,12 @@
     <uses-feature android:name="android.hardware.camera.flash"
         android:required="false" />
 
+    <queries>
+        <package android:name="com.google.android.aicore" />
+    </queries>
+
     <application
+
         android:name="${applicationName}"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
